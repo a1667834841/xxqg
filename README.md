@@ -1,15 +1,17 @@
-### 学习强国自动化学习
+## 学习强国自动化学习
 
-
-该项目基于[playwright-go](https://github.com/mxschmitt/playwright-go) 开发，支持*windows*，*linux*,*mac*
-
-
-### 文档地址: https://johlanse.shhy.xyz
-> 请先看文档再提出问题
- 
-
-##  申明，该项目仅用于学习。
 
 ## 鸣谢
 
-+ ### [imkenf/XueQG](https://github.com/imkenf/XueQG)
++ ### [johlanse/study_xxqg](https://github.com/johlanse/study_xxqg)
+
+
+编译
+go env -w CGO_ENABLED=0
+go env -w GOOS=linux
+go env -w GOARCH=amd64
+go build -o study_xxqg ./
+
+
+启动
+nohup ./study_xxqg > ./study_xxqg.log 2>&1 & echo $!>pid.pid
