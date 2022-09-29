@@ -51,6 +51,7 @@ type Config struct {
 	Cron           string `json:"cron" yaml:"cron" mapstructure:"cron"`
 	CronRandomWait int    `json:"cron_random_wait" yaml:"cron_random_wait" mapstructure:"cron_random_wait"`
 	EdgePath       string `json:"edge_path" yaml:"edge_path" mapstructure:"edge_path"`
+	ChromPath      string `json:"chrom_path" yaml:"chrom_path" mapstructure:"chrom_path"`
 	QrCOde         bool   `json:"qr_code" yaml:"qr_code" mapstructure:"qr_code"`
 	StartWait      int    `json:"start_wait" yaml:"start_wait" mapstructure:"start_wait"`
 	// cookie强制过期时间，单位为h

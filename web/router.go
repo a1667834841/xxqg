@@ -27,13 +27,13 @@ func RouterInit() *gin.Engine {
 	router.Use(cors())
 
 	// 挂载静态文件
-	router.StaticFS("/static", http.FS(static))
+	router.StaticFS("/xxqg/static", http.FS(static))
 	// 访问首页时跳转到对应页面
-	router.GET("/", func(ctx *gin.Context) {
-		ctx.Redirect(301, "/static/xxqg/build/home.html")
+	router.GET("/xxqg", func(ctx *gin.Context) {
+		ctx.Redirect(301, "/xxqg/static/xxqg/build/home.html")
 	})
 
-	router.GET("/about", func(context *gin.Context) {
+	router.GET("/xxqg/about", func(context *gin.Context) {
 		context.JSON(200, Resp{
 			Code:    200,
 			Message: "",
@@ -43,7 +43,7 @@ func RouterInit() *gin.Engine {
 		})
 	})
 
-	router.POST("/restart", check(), func(ctx *gin.Context) {
+	router.POST("/xxqg/restart", check(), func(ctx *gin.Context) {
 		if ctx.GetInt("level") == 1 {
 			ctx.JSON(200, Resp{
 				Code:    200,
@@ -64,7 +64,7 @@ func RouterInit() *gin.Engine {
 		}
 	})
 
-	router.POST("/update", check(), func(ctx *gin.Context) {
+	router.POST("/xxqg/update", check(), func(ctx *gin.Context) {
 		if ctx.GetInt("level") == 1 {
 			update.SelfUpdate("", conf.GetVersion())
 			ctx.JSON(200, Resp{
@@ -87,10 +87,10 @@ func RouterInit() *gin.Engine {
 	})
 
 	if utils.FileIsExist("./config/flutter_xxqg/") {
-		router.StaticFS("/flutter_xxqg", http.Dir("./config/flutter_xxqg/"))
+		router.StaticFS("/xxqg/flutter_xxqg", http.Dir("./config/flutter_xxqg/"))
 	}
 	// 对权限的管理组
-	auth := router.Group("/auth")
+	auth := router.Group("/xxqg/auth")
 	// 用户登录的接口
 	auth.POST("/login", userLogin())
 	// 检查登录状态的token是否正确
@@ -98,16 +98,16 @@ func RouterInit() *gin.Engine {
 
 	// 对于用户可自定义挂载文件的目录
 	if utils.FileIsExist("./config/dist/") {
-		router.StaticFS("/dist", http.Dir("./config/dist/"))
+		router.StaticFS("/xxqg/dist", http.Dir("./config/dist/"))
 	}
 
-	config := router.Group("/config", check())
+	config := router.Group("/xxqg/config", check())
 
 	config.GET("", configGet())
 	config.POST("", configSet())
 
 	// 对用户管理的组
-	user := router.Group("/user", check())
+	user := router.Group("/xxqg/user", check())
 	// 添加用户
 	user.POST("", addUser())
 	// 获取所以已登陆的用户
@@ -116,18 +116,18 @@ func RouterInit() *gin.Engine {
 	user.DELETE("", deleteUser())
 
 	// 获取用户成绩
-	router.GET("/score", getScore())
+	router.GET("/xxqg/score", getScore())
 	// 让一个用户开始学习
-	router.POST("/study", study())
+	router.POST("/xxqg/study", study())
 	// 让一个用户停止学习
-	router.POST("/stop_study", check(), stopStudy())
+	router.POST("/xxqg/stop_study", check(), stopStudy())
 	// 获取程序当天的运行日志
-	router.GET("/log", check(), getLog())
+	router.GET("/xxqg/log", check(), getLog())
 
 	// 登录xxqg的三个接口
-	router.GET("/sign/", sign())
-	router.GET("/login/*proxyPath", generate())
-	router.POST("/login/*proxyPath", check(), generate())
+	router.GET("/xxqg/sign/", sign())
+	router.GET("/xxqg/login/*proxyPath", generate())
+	router.POST("/xxqg/login/*proxyPath", check(), generate())
 	return router
 }
 

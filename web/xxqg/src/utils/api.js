@@ -1,7 +1,7 @@
 import Http from "./request";
 
 let http = new Http({
-    baseURL: "/",
+    baseURL: "/xxqg",
     timeout: 30000
 });
 

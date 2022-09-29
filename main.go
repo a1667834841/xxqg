@@ -116,7 +116,7 @@ func main() {
 		}
 		if config.Wechat.Enable {
 			log.Infoln(fmt.Sprintf("已开启wechat公众号配置,监听地址： ==》 %v:%v", config.Web.Host, config.Web.Port))
-			h.HandleFunc("/wx", push.HandleWechat)
+			h.HandleFunc("/xxqg/wx", push.HandleWechat)
 		}
 		if config.Web.Enable || config.Wechat.Enable {
 			err := http.ListenAndServe(fmt.Sprintf("%s:%d", config.Web.Host, config.Web.Port), h)

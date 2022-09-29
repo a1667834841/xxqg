@@ -77,9 +77,9 @@ class App extends React.Component<any, any> {
             <List>
               <ListItem onClick={()=>{this.setState({"index":"login"})}}>添加用户</ListItem>
               <ListItem onClick={()=>{this.setState({"index":"user_list"})}}>用户管理</ListItem>
-              <ListItem onClick={()=>{this.setState({"index":"config"})}}>配置管理</ListItem>
+              {/* <ListItem onClick={()=>{this.setState({"index":"config"})}}>配置管理</ListItem> */}
               <ListItem onClick={()=>{this.setState({"index":"log"})}}>日志查看</ListItem>
-              <ListItem onClick={()=>{this.setState({"index":"help"})}}>帮助</ListItem>
+              {/* <ListItem onClick={()=>{this.setState({"index":"help"})}}>帮助</ListItem> */}
               <ListItem onClick={()=>{
                 window.localStorage.removeItem("xxqg_token")
                 this.setState({

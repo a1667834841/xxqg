@@ -50,6 +50,7 @@ func (c *Core) RespondDaily(user *model.User, model string) {
 			log.Errorln("答题模块异常结束或答题已完成")
 			c.Push(user.PushId, "text", "答题模块异常退出或答题已完成")
 			log.Errorln(err)
+			c.Quit()
 		}
 	}()
 	// 判断浏览器是否被退出
@@ -202,6 +203,7 @@ func (c *Core) RespondDaily(user *model.User, model string) {
 		tryCount++
 		if tryCount >= 30 {
 			log.Panicln("多次循环尝试答题，已超出30次，自动退出")
+			c.browser.Close()
 		}
 		if c.IsQuit() {
 			return
@@ -341,6 +343,7 @@ func (c *Core) RespondDaily(user *model.User, model string) {
 			err = openTips.Click()
 			if err != nil {
 				log.Errorln("点击打开提示信息按钮失败" + err.Error())
+				c.browser.Close()
 				goto label
 			}
 			log.Debugln("已打开提示信息")
@@ -356,7 +359,7 @@ func (c *Core) RespondDaily(user *model.User, model string) {
 			err = openTips.Click()
 			if err != nil {
 				log.Errorln("点击打开提示信息按钮失败" + err.Error())
-
+				c.browser.Close()
 				goto label
 			}
 			log.Debugln("已关闭提示信息")

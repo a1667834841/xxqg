@@ -285,6 +285,9 @@ func (c *Core) initWindows() {
 	path := conf.GetConfig().EdgePath
 	if path == "" {
 		path = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+	} else {
+		log.Infoln("使用 Chrome浏览器")
+		path = conf.GetConfig().ChromPath
 	}
 	browser, err := pwt.Chromium.Launch(playwright.BrowserTypeLaunchOptions{
 		Args: []string{

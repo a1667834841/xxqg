@@ -59,6 +59,7 @@ web:
   common_user:
     # 代表账号为user,密码为123的普通用户，可添加多个，继续在下面写就好了
     user: 123
+    test: test
 
 # 微信公众号测试号配置
 wechat:

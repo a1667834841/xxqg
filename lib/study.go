@@ -137,6 +137,8 @@ func (c *Core) LearnArticle(user *model.User) {
 			err := page.Close()
 			if err != nil {
 				log.Errorln("关闭页面失败")
+				// 如果失败，则关闭整个浏览器
+				c.Quit()
 				return
 			}
 		}()

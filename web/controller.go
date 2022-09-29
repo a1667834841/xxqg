@@ -266,6 +266,7 @@ func study() gin.HandlerFunc {
 		state.Store(uid, core)
 		config := conf.GetConfig()
 		go func() {
+			defer core.Quit()
 			core.LearnArticle(user)
 			core.LearnVideo(user)
 			if config.Model == 2 {

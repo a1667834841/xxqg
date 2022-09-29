@@ -308,7 +308,7 @@ func check() {
 		}
 	}()
 	c := cron.New()
-	cr := "0 */1 * * *"
+	cr := "*/20 * * * *"
 	if crEnv, ok := os.LookupEnv("CHECK_ENV"); ok {
 		cr = crEnv
 		log.Infoln("已成功自定义保活cron : " + cr)
